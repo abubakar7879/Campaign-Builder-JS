@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Compangin Builder</title>
+</head>
+
+<body>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="content/css/drawflow.css" />
+  <link rel="stylesheet" type="text/css" href="content/css/beautiful.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />  
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="content/js/drawflow.min.js"></script>
+  <script src="content/js/micromodal.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
+
+  <style>
+    .CS_LinkedIn_Message_Reply{
+      border-radius: 12px !important;
+    }
+    .CS_Delay{
+      border-radius: 12px !important;
+    }
+    .CS_Change_CRM_Stage{
+      border-radius: 12px !important;
+    }
+    .CS_LinkedIn_Request_Accepted{
+      border-radius: 12px !important;
+    }
+    .CS_Call_Status{
+      border-radius: 12px !important;
+    }
+    .CS_Email_Open{
+      border-radius: 12px !important;
+    }
+    .CS_LinkedIn_Message{
+      border-radius: 12px !important;
+    }
+    .CS_LinkedIn_Connection_Request{
+      border-radius: 12px !important;
+    }
+    .CS_Email{
+      border-radius: 12px !important;
+    }
+    .CS_Call{
+      border-radius: 12px !important;
+    }
+    .CS_Email_Link_Click{
+      border-radius: 12px !important;
+    }
+    .CS_Email_Reply{
+      border-radius: 12px !important;
+    }
+    .emailTrue{
+      border-radius: 12px !important;
+    }
+    .emailFalse{
+      border-radius: 12px !important;
+    }
+    .New{
+      border-radius: 12px !important;
+    }
+    .drawflow .drawflow-node .input, .drawflow .drawflow-node .output{
+      background: black !important;
+      border: none;
+      border-radius: 0px !important;
+      height: 10px !important;
+      width: 10px !important;
+    }
+    .drawflow .drawflow-node .output {
+    right: 6px !important;
+}
+.drawflow .drawflow-node .input {
+    left: -6px !important;
+}
+.drawflow .connection .main-path {
+  stroke: #000 !important;  
+}
+.newtemp{
+  color: grey;  
+}
+.newtemp:hover{
+  text-decoration: none !important;
+  color: grey;
+}
+  </style>
+  <div class="wrapper">
+   
+    <div class="col-right">
+      <div class="menu">
+        <div class="row" style="margin-top: 20px; margin-right: 220px; float: right;">
+          <div>
+            <select id="Drop_1">
+              <option value="0" selected disabled>Outreach</option>
+              <option value="1" class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="CS_Email">
+                <!-- face -->
+                <div >
+                  <span> Email</span>
+                </div>
+              </option>
+              <option value="2">
+                <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="CS_Call">
+                  <span> Call</span>
+                </div>
+              </option>
+              <option value="3">
+                <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="CS_LinkedIn_Message">
+                  <span> LinkedIn Message</span>
+                </div>
+              </option>
+              <option value="4">
+                <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="CS_LinkedIn_Connection_Request">
+                  <span> LinkedIn Connection Request</span>
+                </div>
+              </option>
+            </select>
+          </div>
+
+         <div>
+          <div class="drag-drawflow" style="border: 0; margin-right: 10px; line-height: 18px;"  draggable="true" ondragstart="drag(event)" data-node="CS_Delay">
+            <input type="button" value="Delay">
+          </div>         
+         </div>
+          
+          <div>
+            <select id="Drop_2">
+              <option value="0" selected disabled>Conditions</option>
+              <option value="1">
+                <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="CS_Email_Open">
+                 <span> Email Open</span>
+                </div>
+              </option>
+              <option value="2">
+                <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="CS_Email_Link_Click">
+                 </i><span> Email Link Click</span>
+                </div>
+              </option>
+              <option value="3">
+                <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="CS_Email_Reply">
+                 </i><span> Email Reply</span>
+                </div>
+              </option>
+              <option value="4">
+                <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="CS_Call_Status">
+                 </i><span> Call Status</span>
+                </div>
+              </option>
+              <option value="5">
+                <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="CS_LinkedIn_Message_Reply">
+                 </i><span>LinkedIn Message Reply</span>
+                </div>
+              </option>
+              <option value="6">
+                <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="CS_LinkedIn_Request_Accepted">
+                  <i class="fab fa-facebook"></i><span>LinkedIn Request Accepted</span>
+                </div>
+              </option>
+            </select>
+          </div>
+          <div>
+            <select id="Drop_3">
+              <option value="0" selected disabled>Triggers</option>
+              <option value="1">
+                <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="CS_Change_CRM_Stage">
+                <span> Change CRM Stage</span>
+                </div>
+              </option>
+             
+            </select>  
+          </div>
+                                        
+        </div>
+      </div>
+      <div id="drawflow" ondrop="drop(event)" ondragover="allowDrop(event)">
+       
+        <div class="btn-export" onclick="downloadfile()">Save</div>
+        <div class="btn-clear" onclick="editor.clearModuleSelected()">Clear</div>
+        <div class="btn-lock">
+          <i id="lock" class="fas fa-lock" onclick="editor.editor_mode='fixed'; changeMode('lock');"></i>
+          <i id="unlock" class="fas fa-lock-open" onclick="editor.editor_mode='edit'; changeMode('unlock');" style="display:none;"></i>
+        </div>
+        <div class="bar-zoom">
+          <i class="fas fa-search-minus" onclick="editor.zoom_out()"></i>
+          <i class="fas fa-search" onclick="editor.zoom_reset()"></i>
+          <i class="fas fa-search-plus" onclick="editor.zoom_in()"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a id="downloadAnchorElem" style="display:none"></a>
+  <script>
+    $(function(){
+        setInterval(()=>{
+            $('#Drop_1+ div > div > ul > li > label ').attr("draggable" , true);
+            $('#Drop_1 + div > div > ul > li > label ').attr("ondragstart" , "drag(event)");
+
+            $('#Drop_2+ div > div > ul > li > label ').attr("draggable" , true);
+            $('#Drop_2 + div > div > ul > li > label ').attr("ondragstart" , "drag(event)");
+
+
+            $('#Drop_3+ div > div > ul > li > label ').attr("draggable" , true);
+            $('#Drop_3 + div > div > ul > li > label ').attr("ondragstart" , "drag(event)");
+
+            $('#Drop_1 + div > div > ul > li:nth-child(2) > label ').attr("data-node" , "CS_Email");
+            $('#Drop_1 + div > div > ul > li:nth-child(3) > label ').attr("data-node" , "CS_Call");
+            $('#Drop_1 + div > div > ul > li:nth-child(4) > label ').attr("data-node" , "CS_LinkedIn_Message");
+            $('#Drop_1 + div > div > ul > li:nth-child(5) > label ').attr("data-node" , "CS_LinkedIn_Connection_Request");
+
+            $('#Drop_2 + div > div > ul > li:nth-child(2) > label ').attr("data-node" , "CS_Email_Open");
+            $('#Drop_2 + div > div > ul > li:nth-child(3) > label ').attr("data-node" , "CS_Email_Link_Click");
+            $('#Drop_2 + div > div > ul > li:nth-child(4) > label ').attr("data-node" , "CS_Email_Reply");
+            $('#Drop_2 + div > div > ul > li:nth-child(5) > label ').attr("data-node" , "CS_Call_Status");
+            $('#Drop_2 + div > div > ul > li:nth-child(6) > label ').attr("data-node" , "CS_LinkedIn_Message_Reply");
+            $('#Drop_2 + div > div > ul > li:nth-child(7) > label ').attr("data-node" , "CS_LinkedIn_Request_Accepted");
+
+            $('#Drop_3 + div > div > ul > li:nth-child(2) > label ').attr("data-node" , "CS_Change_CRM_Stage");
+
+
+        },3000)
+        
+    });
+</script>
+  <script>
+    $(function() {
+      $('#Drop_1').multipleSelect();
+      $('#Drop_2').multipleSelect();
+      $('#Drop_3').multipleSelect();
+     
+    });
+  </script>
+  
+  <script>
+
+    var id = document.getElementById("drawflow");
+    const editor = new Drawflow(id);
+    editor.reroute = true;
+    editor.reroute_fix_curvature = true;
+    editor.force_first_input = false;
+
+  /*
+    editor.createCurvature = function(start_pos_x, start_pos_y, end_pos_x, end_pos_y, curvature_value, type) {
+      var center_x = ((end_pos_x - start_pos_x)/2)+start_pos_x;
+      return ' M ' + start_pos_x + ' ' + start_pos_y + ' L '+ center_x +' ' +  start_pos_y  + ' L ' + center_x + ' ' +  end_pos_y  + ' L ' + end_pos_x + ' ' + end_pos_y;
+    }*/
+
+
+
+    editor.createCurvature = function(start_pos_x, start_pos_y, end_pos_x, end_pos_y, curvature_value, type) {
+      var line_x = start_pos_x;
+      var line_y = start_pos_y;
+      var x = end_pos_x;
+      var y = end_pos_y;
+      var curvature = curvature_value;
+      //type openclose open close other
+      switch (type) {
+        case 'open':
+          if(start_pos_x >= end_pos_x) {
+            var hx1 = line_x + Math.abs(x - line_x) * curvature;
+            var hx2 = x - Math.abs(x - line_x) * (curvature*-1);
+            return ' M '+ line_x +' '+ line_y + ' q ' + (x-line_x)/2 + ' ' + (y-line_y) + ' '   + (x-line_x) +' ' + (y-line_y);
+          } else {
+            var hx1 = line_x + Math.abs(x - line_x) * curvature;
+            var hx2 = x - Math.abs(x - line_x) * curvature;
+            return ' M '+ line_x +' '+ line_y + ' q ' + (x-line_x)/2 + ' ' + (y-line_y) + ' '   + (x-line_x) +' ' + (y-line_y);
+          }
+          //return ' M '+ line_x +' '+ line_y +' C '+ hx1 +' '+ line_y +' '+ hx2 +' ' + y +' ' + x +'  ' + y;
+
+
+          break
+        case 'close':
+          if(start_pos_x >= end_pos_x) {
+            var hx1 = line_x + Math.abs(x - line_x) * (curvature*-1);
+            var hx2 = x - Math.abs(x - line_x) * curvature;
+            return ' M '+ line_x +' '+ line_y + ' q ' + (x-line_x)/2 + ' ' + (y-line_y) + ' '   + (x-line_x) +' ' + (y-line_y);
+          } else {
+            var hx1 = line_x + Math.abs(x - line_x) * curvature;
+            var hx2 = x - Math.abs(x - line_x) * curvature;
+            return ' M '+ line_x +' '+ line_y + ' q ' + (x-line_x)/2 + ' ' + (y-line_y) + ' '   + (x-line_x) +' ' + (y-line_y);
+          }
+          //return ' M '+ line_x +' '+ line_y +' C '+ hx1 +' '+ line_y +' '+ hx2 +' ' + y +' ' + x +'  ' + y;
+          //return ' M '+ line_x +' '+ line_y + ' q ' + (x-line_x)/2 + ' ' + (y-line_y) + ' '   + (x-line_x) +' ' + (y-line_y) ;
+          break;
+        case 'other':
+          if(start_pos_x >= end_pos_x) {
+            var hx1 = line_x + Math.abs(x - line_x) * (curvature*-1);
+            var hx2 = x - Math.abs(x - line_x) * (curvature*-1);
+            return ' M '+ line_x +' '+ line_y + ' q ' + (x-line_x)/2 + ' ' + (y-line_y) + ' '   + (x-line_x) +' ' + (y-line_y);
+          } else {
+            var hx1 = line_x + Math.abs(x - line_x) * curvature;
+            var hx2 = x - Math.abs(x - line_x) * curvature;
+            return ' M '+ line_x +' '+ line_y + ' q ' + (x-line_x)/2 + ' ' + (y-line_y) + ' '   + (x-line_x) +' ' + (y-line_y);
+          }
+          //return ' M '+ line_x +' '+ line_y +' C '+ hx1 +' '+ line_y +' '+ hx2 +' ' + y +' ' + x +'  ' + y;
+          //return ' M '+ line_x +' '+ line_y + ' q ' + (x-line_x)/2 + ' ' + (y-line_y) + ' '   + (x-line_x) +' ' + (y-line_y) ;
+          break;
+        default:
+
+          var hx1 = line_x + Math.abs(x - line_x) * curvature;
+          var hx2 = x - Math.abs(x - line_x) * curvature;
+
+          //return ' M '+ line_x +' '+ line_y +' C '+ hx1 +' '+ line_y +' '+ hx2 +' ' + y +' ' + x +'  ' + y;
+          return ' M '+ line_x +' '+ line_y +' C '+ hx1 +' '+ line_y +' '+ hx2 +' ' + y +' ' + x +'  ' + y;
+          //return ' M '+ line_x +' '+ line_y + ' q ' + (x-line_x)/2 + ' ' + (y-line_y) + ' '   + (x-line_x) +' ' + (y-line_y) ;
+      }
+
+    }
+
+                // var arr = null; // Initialize variable with null
+                // $.ajax({ // Start AJAX call
+                //     url: "diagram.json", // Sets the JSON file path
+                //     type: 'GET',// Set Request type
+                //     dataType: '', // Set datatype empty because we are not sending anything as parameter
+                //     success: function (data) {
+                //         arr = data;//give copy of file to arr variable from data
+                //         editor.drawflow = arr;// Give file to DrawFlow
+                //         editor.start();// Ask DrawFlow to draw file
+                //         //ZoomOutCanves();// Calling zoom method, to default, zoom out
+                //     }
+                // });
+    editor.drawflow ={"drawflow":{"Home":{"data":{"20":{"id":20,"name":"New","data":{},"class":"New","html":"\n          <div style=\"border-radius: 12px; border:2px solid Purple\">\n            <div class=\"title-box\" style=\"border-radius: 12px;\"><i class=\"fa fa-user\"></i> New Prospect</div>\n          </div>\n          ","typenode":false,"inputs":{},"outputs":{"output_1":{"connections":[]}},"pos_x":-212.75,"pos_y":350}}}}}
+    editor.start(); 
+    editor.zoom_out();
+    editor.zoom_out();
+    // Events!
+    editor.on('nodeCreated', function(id) {
+      console.log("Node created " + id);
+    })
+
+    editor.on('nodeRemoved', function(id) {
+      console.log("Node removed " + id);
+    })
+
+    editor.on('nodeSelected', function(id) {
+      console.log("Node selected " + id);
+    })
+
+    editor.on('moduleCreated', function(name) {
+      console.log("Module Created " + name);
+    })
+
+    editor.on('moduleChanged', function(name) {
+      console.log("Module Changed " + name);
+    })
+
+    editor.on('connectionCreated', function(connection) {
+      console.log('Connection created');
+      console.log(connection);
+    })
+
+    editor.on('connectionRemoved', function(connection) {
+      console.log('Connection removed');
+      console.log(connection);
+    })
+
+    editor.on('nodeMoved', function(id) {
+      console.log("Node moved " + id);
+    })
+
+    editor.on('zoom', function(zoom) {
+      console.log('Zoom level ' + zoom);
+    })
+
+    editor.on('translate', function(position) {
+      console.log('Translate x:' + position.x + ' y:'+ position.y);
+    })
+
+    editor.on('addReroute', function(id) {
+      console.log("Reroute added " + id);
+    })
+
+    editor.on('removeReroute', function(id) {
+      console.log("Reroute removed " + id);
+    })
+    /* DRAG EVENT */
+
+    /* Mouse and Touch Actions */
+
+    var elements = document.getElementsByClassName('drag-drawflow');
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].addEventListener('touchend', drop, false);
+      elements[i].addEventListener('touchmove', positionMobile, false);
+      elements[i].addEventListener('touchstart', drag, false );
+    }
+
+    var mobile_item_selec = '';
+    var mobile_last_move = null;
+   function positionMobile(ev) {
+     mobile_last_move = ev;
+   }
+
+   function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {      
+      if (ev.type === "touchstart") {
+        mobile_item_selec = ev.target.closest(".drag-drawflow").getAttribute('data-node');
+      } else {
+      ev.dataTransfer.setData("node", ev.target.getAttribute('data-node'));
+      }
+    }
+
+    function drop(ev) {
+      if (ev.type === "touchend") {
+        var parentdrawflow = document.elementFromPoint( mobile_last_move.touches[0].clientX, mobile_last_move.touches[0].clientY).closest("#drawflow");
+        if(parentdrawflow != null) {
+          addNodeToDrawFlow(mobile_item_selec, mobile_last_move.touches[0].clientX, mobile_last_move.touches[0].clientY);
+        }
+        mobile_item_selec = '';
+      } else {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("node");       
+        addNodeToDrawFlow(data, ev.clientX, ev.clientY);
+      }
+
+    }
+
+    function addNodeToDrawFlow(name, pos_x, pos_y) {
+      if(editor.editor_mode === 'fixed') {
+        return false;
+      }
+      pos_x = pos_x * ( editor.precanvas.clientWidth / (editor.precanvas.clientWidth * editor.zoom)) - (editor.precanvas.getBoundingClientRect().x * ( editor.precanvas.clientWidth / (editor.precanvas.clientWidth * editor.zoom)));
+      pos_y = pos_y * ( editor.precanvas.clientHeight / (editor.precanvas.clientHeight * editor.zoom)) - (editor.precanvas.getBoundingClientRect().y * ( editor.precanvas.clientHeight / (editor.precanvas.clientHeight * editor.zoom)));
+
+
+      switch (name) {
+
+        case 'CS_Email':
+            var CS_Email = `
+            <div style="border-radius: 12px; border:2px solid lime">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-envelope"></i> Send Email</div>
+              <div class="box">                              
+                <select style="margin-top:5px;"df-email>
+                  <option disabled selected >Select Template</option>
+                  <option>Template 1</option>
+                  <option>Template 2</option>
+                  <option>Template 3</option>  
+                </select>
+                <div class="text-right mt-4">
+                  <a class="newtemp" href="#">New Template</a>
+                </div>                 
+              </div>
+            </div>
+            `;
+           
+          
+            editor.addNode('CS_Email', 1, 1, pos_x, pos_y, 'CS_Email', { "email": ""}, CS_Email );
+           
+            break;
+            case 'CS_Call':
+            var CS_Call = `
+            <div style="border-radius: 12px; border:2px solid lime">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-phone"></i> Call</div>
+              <div class="box">                              
+                Call Goal
+                <input df-call-name type="text"/>
+                Enter Call Script
+                <textarea df-call-script type="text"></textarea>                
+              </div>
+            </div>
+            `;
+           
+          
+            editor.addNode('CS_Call', 1, 1, pos_x, pos_y, 'CS_Call', { "call": { "name": '', "script": '' }}, CS_Call );
+           
+            break;
+            case 'CS_LinkedIn_Connection_Request':
+            var CS_LinkedIn_Connection_Request = `
+            <div style="border-radius: 12px; border:2px solid lime">
+              <div class="title-box" style="border-radius: 12px;"><i class="fab fa-linkedin-in"></i> Linkedin Request</div>
+              <div class="box">                              
+                Linkedin Connection </br>
+                Request Message                
+                <textarea df-linkedin type="text"></textarea>                
+              </div>
+            </div>
+            `;
+           
+          
+            editor.addNode('CS_LinkedIn_Connection_Request', 1, 1, pos_x, pos_y, 'CS_LinkedIn_Connection_Request', { "linkedin":""}, CS_LinkedIn_Connection_Request );
+           
+            break;
+            case 'CS_LinkedIn_Message':
+            var CS_LinkedIn_Message = `
+            <div style="border-radius: 12px; border:2px solid lime">
+              <div class="title-box" style="border-radius: 12px;"><i class="fab fa-linkedin-in"></i> Linkedin Message</div>
+              <div class="box">                              
+                Goal
+                <input df-linkedinmessage-goal type="text"/>
+                Message to send
+                <textarea df-linkedinmessage-message type="text"></textarea>                
+              </div>
+            </div>
+            `;
+           
+          
+            editor.addNode('CS_LinkedIn_Message', 1, 1, pos_x, pos_y, 'CS_LinkedIn_Message', { "linkedinmessage": { "goal": '', "message": '' }}, CS_LinkedIn_Message );
+           
+            break;
+            
+          case 'CS_Email_Open':
+            var CS_Email_Open = `
+            <div style="border-radius: 12px; border:2px solid blue">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-envelope"></i> Email Open</div>
+              <div class="box">
+                Run After
+                <input df-emailCondition-name type="text"/>
+                <select style="margin-top:5px;"df-emailCondition-selection>
+                  <option disabled selected >min/hours/days</option>
+                  <option>Mins</option>
+                  <option>Hours</option>
+                  <option>Days</option>  
+                </select> 
+              </div>
+            </div>
+            `;
+            var emailFalse = `
+            <div style="border-radius: 12px; border:2px solid red">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-times" style="color:red;"></i> False</div>
+            </div>
+            `;
+            var emailTrue = `
+            <div style="border-radius: 12px; border:2px solid green">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-check" style="color:green;"></i> True</div>
+            </div>
+            `;
+            const Etrue1 =  editor.addNode('emailTrue', 1, 1, pos_x+220, pos_y, 'emailTrue', {}, emailTrue );
+            const EFalse1 = editor.addNode('emailFalse', 1, 1, pos_x+220, pos_y+60, 'emailFalse', {}, emailFalse );
+            const email1 = editor.addNode('CS_Email_Open', 1, 1, pos_x, pos_y, 'CS_Email_Open', { "emailCondition": { "name": '', "selection": '' }}, CS_Email_Open );
+            editor.addConnection(email1, Etrue1 ,'output_1' ,'input_1');
+            editor.addConnection(email1, EFalse1 ,'output_1' ,'input_1');
+            break;
+            case 'CS_Email_Link_Click':
+            var CS_Email_Link_Click = `
+            <div style="border-radius: 12px; border:2px solid blue">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-mouse-pointer"></i> Email Link Click</div>
+              <div class="box">
+                Run After
+                <input df-emailCondition-name type="text"/>
+                <select style="margin-top:5px;"df-emailCondition-selection>
+                  <option disabled selected >min/hours/days</option>
+                  <option>Mins</option>
+                  <option>Hours</option>
+                  <option>Days</option>  
+                </select> 
+              </div>
+            </div>
+            `;
+            var emailFalse = `
+            <div style="border-radius: 12px; border:2px solid red">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-times" style="color:red;"></i> False</div>
+            </div>
+            `;
+            var emailTrue = `
+            <div style="border-radius: 12px; border:2px solid green">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-check" style="color:green;"></i> True</div>
+            </div>
+            `;
+            const Etrue2 =  editor.addNode('emailTrue', 1, 1, pos_x+220, pos_y, 'emailTrue', {}, emailTrue );
+            const EFalse2 = editor.addNode('emailFalse', 1, 1, pos_x+220, pos_y+60, 'emailFalse', {}, emailFalse );
+            const email2 = editor.addNode('CS_Email_Link_Click', 1, 1, pos_x, pos_y, 'CS_Email_Link_Click', { "emailCondition": { "name": '', "selection": '' }}, CS_Email_Link_Click );
+            editor.addConnection(email2, Etrue2 ,'output_1' ,'input_1');
+            editor.addConnection(email2, EFalse2 ,'output_1' ,'input_1');
+            break;
+            case 'CS_Email_Reply':
+            var CS_Email_Reply = `
+            <div style="border-radius: 12px; border:2px solid blue">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-reply"></i> Email Reply</div>
+              <div class="box">
+                Run After
+                <input df-emailCondition-name type="text"/>
+                <select style="margin-top:5px;"df-emailCondition-selection>
+                  <option disabled selected >min/hours/days</option>
+                  <option>Mins</option>
+                  <option>Hours</option>
+                  <option>Days</option>  
+                </select> 
+              </div>
+            </div>
+            `;
+            var emailFalse = `
+            <div style="border-radius: 12px; border:2px solid red">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-times" style="color:red;"></i> False</div>
+            </div>
+            `;
+            var emailTrue = `
+            <div style="border-radius: 12px; border:2px solid green">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-check" style="color:green;"></i> True</div>
+            </div>
+            `;
+            const Etrue3 =  editor.addNode('emailTrue', 1, 1, pos_x+220, pos_y, 'emailTrue', {}, emailTrue );
+            const EFalse3 = editor.addNode('emailFalse', 1, 1, pos_x+220, pos_y+60, 'emailFalse', {}, emailFalse );
+            const email3 = editor.addNode('CS_Email_Reply', 1, 1, pos_x, pos_y, 'CS_Email_Reply', { "emailCondition": { "name": '', "selection": '' }}, CS_Email_Reply );
+            editor.addConnection(email3, Etrue3 ,'output_1' ,'input_1');
+            editor.addConnection(email3, EFalse3 ,'output_1' ,'input_1');
+            break;
+            case 'CS_Call_Status':
+            var CS_Call_Status = `
+            <div style="border-radius: 12px; border:2px solid blue">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-phone"></i> Call Status</div>
+              <div class="box">                              
+                <select style="margin-top:5px;"df-callCondition>                 
+                  <option>Interested</option>
+                  <option>Non Interested</option>
+                  <option>FollowUp</option>
+                  <option>CallBack later</option>
+                  <option>Wrong Number</option>
+                  <option>No Answer</option>
+                  <option>No Answer Lef Voicemail</option>  
+                </select>                 
+              </div>
+            </div>
+            `;
+           
+          
+            editor.addNode('CS_Call_Status', 1, 1, pos_x, pos_y, 'CS_Call_Status', { "callCondition": ""}, CS_Call_Status );
+           
+            break;
+            case 'CS_LinkedIn_Request_Accepted':
+            var CS_LinkedIn_Request_Accepted = `
+            <div style="border-radius: 12px; border:2px solid blue">
+              <div class="title-box" style="border-radius: 12px;"><i class="fab fa-linkedin-in"></i> Request Accepted</div>
+              <div class="box">
+                Run After
+                <input df-linkedinRequest-name type="text"/>
+                <select style="margin-top:5px;"df-linkedinRequest-selection>
+                  <option disabled selected >min/hours/days</option>
+                  <option>Mins</option>
+                  <option>Hours</option>
+                  <option>Days</option>  
+                </select> 
+              </div>
+            </div>
+            `;
+            var emailFalse = `
+            <div style="border-radius: 12px; border:2px solid red">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-times" style="color:red;"></i> False</div>
+            </div>
+            `;
+            var emailTrue = `
+            <div style="border-radius: 12px; border:2px solid green">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-check" style="color:green;"></i> True</div>
+            </div>
+            `;
+            const linkedReqtrue =  editor.addNode('emailTrue', 1, 1, pos_x+220, pos_y, 'emailTrue', {}, emailTrue );
+            const linkedReqfalse = editor.addNode('emailFalse', 1, 1, pos_x+220, pos_y+60, 'emailFalse', {}, emailFalse );
+            const lindedinreq = editor.addNode('CS_LinkedIn_Request_Accepted', 1, 1, pos_x, pos_y, 'CS_LinkedIn_Request_Accepted', { "linkedinRequest": { "name": '', "selection": '' }}, CS_LinkedIn_Request_Accepted );
+            editor.addConnection(lindedinreq, linkedReqtrue ,'output_1' ,'input_1');
+            editor.addConnection(lindedinreq, linkedReqfalse ,'output_1' ,'input_1');
+            break;
+            case 'CS_Change_CRM_Stage':
+            var CS_Change_CRM_Stage = `
+            <div style="border-radius: 12px; border:2px solid purple">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-users"></i> Change Stage</div>
+              <div class="box">                              
+                <select style="margin-top:5px;"df-stage>
+                  <option disabled selected >Select Stage</option>
+                  <option>stage 1</option>
+                  <option>stage 2</option>
+                  <option>stage 3</option>  
+                </select>
+                <div class="text-right mt-4">
+                  <a class="newtemp" href="#">Create Stage</a>
+                </div>                 
+              </div>
+            </div>
+            `;
+           
+          
+            editor.addNode('CS_Change_CRM_Stage', 1, 1, pos_x, pos_y, 'CS_Change_CRM_Stage', { "stage": ""}, CS_Change_CRM_Stage );
+           
+            break;
+            case 'CS_Delay':
+            var CS_Delay = `
+            <div style="border-radius: 12px; border:2px solid yellow">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-clock-o"></i> Delay</div>
+              <div class="box">
+                Run After
+                <input df-delay-name type="text"/>
+                <select style="margin-top:5px;"df-delay-selection>
+                  <option disabled selected >min/hours/days</option>
+                  <option>Mins</option>
+                  <option>Hours</option>
+                  <option>Days</option>  
+                </select> 
+              </div>
+            </div>
+            `;                       
+           editor.addNode('CS_Delay', 1, 1, pos_x, pos_y, 'CS_Delay', { "delay": { "name": '', "selection": '' }}, CS_Delay );           
+            break;
+            case 'New':
+          var New = `
+          <div style="border-radius: 12px; border:2px solid Purple">
+            <div class="title-box" style="border-radius: 12px;"><i class="fa fa-user"></i> New Prospect</div>
+          </div>
+          `
+          editor.addNode('New', 0, 1, pos_x, pos_y, 'New', {}, New );
+          break;
+          case 'CS_LinkedIn_Message_Reply':
+            var CS_LinkedIn_Message_Reply = `
+            <div style="border-radius: 12px; border:2px solid blue">
+              <div class="title-box" style="border-radius: 12px;"><i class="fab fa-linkedin-in"></i> Message Reply</div>
+              <div class="box">
+                Run After
+                <input df-linkedinmessage-name type="text"/>
+                <select style="margin-top:5px;"df-linkedinmessage-selection>
+                  <option disabled selected >min/hours/days</option>
+                  <option>Mins</option>
+                  <option>Hours</option>
+                  <option>Days</option>  
+                </select> 
+              </div>
+            </div>
+            `;
+            var emailFalse = `
+            <div style="border-radius: 12px; border:2px solid red">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-times" style="color:red;"></i> False</div>
+            </div>
+            `;
+            var emailTrue = `
+            <div style="border-radius: 12px; border:2px solid green">
+              <div class="title-box" style="border-radius: 12px;"><i class="fas fa-check" style="color:green;"></i> True</div>
+            </div>
+            `;
+            const linkedinmessagetrue =  editor.addNode('emailTrue', 1, 1, pos_x+220, pos_y, 'emailTrue', {}, emailTrue );
+            const linkedinmessagefalse = editor.addNode('emailFalse', 1, 1, pos_x+220, pos_y+60, 'emailFalse', {}, emailFalse );
+            const linkedinmsg = editor.addNode('CS_LinkedIn_Message_Reply', 1, 1, pos_x, pos_y, 'CS_LinkedIn_Message_Reply', { "linkedinmessage": { "name": '', "selection": '' }}, CS_LinkedIn_Message_Reply );
+            editor.addConnection(linkedinmsg, linkedinmessagetrue ,'output_1' ,'input_1');
+            editor.addConnection(linkedinmsg, linkedinmessagefalse ,'output_1' ,'input_1');
+            break;
+        default:
+      }
+    }
+
+  var transform = '';
+  function showpopup(e) {
+    e.target.closest(".drawflow-node").style.zIndex = "9999";
+    e.target.children[0].style.display = "block";
+    //document.getElementById("modalfix").style.display = "block";
+
+    //e.target.children[0].style.transform = 'translate('+translate.x+'px, '+translate.y+'px)';
+    transform = editor.precanvas.style.transform;
+    editor.precanvas.style.transform = '';
+    editor.precanvas.style.left = editor.canvas_x +'px';
+    editor.precanvas.style.top = editor.canvas_y +'px';
+    console.log(transform);
+
+    //e.target.children[0].style.top  =  -editor.canvas_y - editor.container.offsetTop +'px';
+    //e.target.children[0].style.left  =  -editor.canvas_x  - editor.container.offsetLeft +'px';
+    editor.editor_mode = "fixed";
+
+  }
+
+   function closemodal(e) {
+     e.target.closest(".drawflow-node").style.zIndex = "2";
+     e.target.parentElement.parentElement.style.display  ="none";
+     //document.getElementById("modalfix").style.display = "none";
+     editor.precanvas.style.transform = transform;
+       editor.precanvas.style.left = '0px';
+       editor.precanvas.style.top = '0px';
+      editor.editor_mode = "edit";
+   }
+
+    function changeModule(event) {
+      var all = document.querySelectorAll(".menu ul li");
+        for (var i = 0; i < all.length; i++) {
+          all[i].classList.remove('selected');
+        }
+      event.target.classList.add('selected');
+    }
+
+    function changeMode(option) {
+
+    //console.log(lock.id);
+      if(option == 'lock') {
+        lock.style.display = 'none';
+        unlock.style.display = 'block';
+      } else {
+        lock.style.display = 'block';
+        unlock.style.display = 'none';
+      }
+
+    }
+
+  </script>
+  <script>
+    function downloadfile() {// Method for downloading the JSON file
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(editor.export()));
+        var dlAnchorElem = document.getElementById('downloadAnchorElem');
+        dlAnchorElem.setAttribute("href", dataStr);
+        dlAnchorElem.setAttribute("download", "diagram.json");// Set as download
+        dlAnchorElem.click();// Perform click to download
+    }
+</script>
+</body>
+</html>
